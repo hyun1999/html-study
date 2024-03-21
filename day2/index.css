@@ -21,3 +21,7 @@ a {
   width: 200px;
   min-height: 100px;
 }
+.box img {
+  width: 100rem;
+  min-height: 100vh;
+}
