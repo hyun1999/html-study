@@ -16,8 +16,10 @@ const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach((entries) => {
     if (entries.isIntersecting) {
       console.log("확인");
+      entries.target.className = "box show txt_big";
     } else {
       console.log("미확인");
+      entries.target.className = "box hide txt_small";
     }
     console.log(entries);
   });
