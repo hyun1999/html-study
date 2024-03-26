@@ -4,35 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      td {
+        border: 1px solid black;
+      }
+      th {
+        border: 1px solid black;
+      }
+    </style>
   </head>
   <body>
     <h1 id="txt">순위</h1>
     <div id="box"></div>
-    <table>
+    <table style="border: 1px solid black" id="table">
       <thead>
-        <th>팀순위</th>
-        <th>팀이름</th>
-        <th>승</th>
-        <th>패</th>
-        <th>득실차</th>
-        <th>승률</th>
-        <th>KDA</th>
-        <th>킬</th>
-        <th>데스</th>
-        <th>어시스트</th>
+        <th>팀 순위</th>
+        <th>팀 이름</th>
+        <th onclick="sortTableByWin()">승</th>
+        <th onclick="sortTableByLose()">패</th>
+        <th onclick="sortTableByDiff()">득실차</th>
+        <th onclick="sortTableByWinRate()">승률</th>
+        <th onclick="sortTableByKDA()">kda</th>
+        <th onclick="sortTableByKilll()">킬</th>
+        <th onclick="sortTableByDeath()">데스</th>
+        <th onclick="sortTableByAssist()">어시스트</th>
       </thead>
-      <tbody id="tbody">
-        <table border="1" id="1">
-          <td id="rank"></td>
-          <td id="name"></td>
-          <td id="win"></td>
-          <td id="lose"></td>
-          <td id="winLoseDiff"></td>
-          <td id="kill"></td>
-          <td id="death"></td>
-          <td id="assist"></td>
-        </table>
-      </tbody>
+      <tbody id="tbody"></tbody>
     </table>
     <script src="./test.js"></script>
   </body>

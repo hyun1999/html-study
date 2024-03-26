@@ -1,3 +1,37 @@
+// alert("dadsasad");
+// confirm("밥 먹었니");
+// console.log("aa");
+
+// setTimeout(() =>{
+//     alert("hello");
+// }, 2000);
+// const interval = setInterval(() => {
+//     alert("hello");
+// }, 2000);
+// setTimeout(() => {
+//     clearInterval(interval);
+// }, 5000);
+
+// const interval_1 = setInterval(() => {
+//     alert("hello");
+// }, 1000);
+// const interval_2 = setInterval(() => {
+//     const end = confirm("end?");
+//     if(end){
+//         clearInterval(interval_1);
+//         clearInterval(interval_2);
+//     }
+// }, 3000);
+const txt = document.getElementById("txt");
+// console.log(txt);
+// setTimeout(() => {
+//     txt.innerHTML = "hello";
+// }, 2000);
+// var count = 0;
+// setInterval(() => {
+//     txt.innerHTML = "count : " + count++;
+// }, 1000);
+
 const teams = [
   {
     rank: 1,
@@ -66,6 +100,7 @@ const teams = [
     win: 7,
     lose: 11,
     winLoseDiff: -4,
+
     kill: 495,
     death: 559,
     assist: 1281,
@@ -76,6 +111,7 @@ const teams = [
     win: 7,
     lose: 11,
     winLoseDiff: -9,
+    kda: 2.89,
     kill: 495,
     death: 559,
     assist: 1122,
@@ -102,46 +138,105 @@ const teams = [
     assist: 858,
   },
 ];
-
 const box = document.getElementById("box");
 const p = document.createElement("p");
-p.innerHTML = "hihi";
+p.innerHTML = "hello";
 box.append(p);
-const tbody = document.getElementById("tbody");
-for (let index = 0; index < 10; index++) {
-  const tr = document.createElement("tr");
-  const rank = document.createElement("td");
-  rank.innerHTML = teams[index].rank;
-  const name = document.createElement("td");
-  name.innerHTML = teams[index].name;
-  const win = document.createElement("td");
-  win.innerHTML = teams[index].win;
-  const lose = document.createElement("td");
-  lose.innerHTML = teams[index].lose;
-  const winLoseDiff = document.createElement("td");
-  winLoseDiff.innerHTML = teams[index].winLoseDiff;
-  const winPer = document.createElement("td");
-  winPer.innerHTML = teams[index].winPer;
-  const kda = document.createElement("td");
-  kda.innerHTML = teams[index].kda;
-  const kill = document.createElement("td");
-  kill.innerHTML = teams[index].kill;
-  const death = document.createElement("td");
-  death.innerHTML = teams[index].death;
-  const assist = document.createElement("td");
-  assist.innerHTML = teams[index].assist;
 
-  tr.append(rank);
-  tr.append(name);
-  tr.append(win);
-  tr.append(lose);
-  tr.append(winLoseDiff);
-  tr.append(winPer);
-  tr.append(kda);
-  tr.append(winLoseDiff);
-  tr.append(kill);
-  tr.append(death);
-  tr.append(assist);
+const setTable = () => {
+  const table = document.getElementById("tbody");
+  for (const team of teams) {
+    const tr = document.createElement("tr");
+    const rank = document.createElement("td");
+    rank.innerHTML = team.rank;
+    tr.append(rank);
+    const name = document.createElement("td");
+    name.innerHTML = team.name;
+    tr.append(name);
+    const win = document.createElement("td");
+    win.innerHTML = team.win;
+    tr.append(win);
+    const lose = document.createElement("td");
+    lose.innerHTML = team.lose;
+    tr.append(lose);
+    const winLoseDiff = document.createElement("td");
+    winLoseDiff.innerHTML = team.winLoseDiff;
+    tr.append(winLoseDiff);
+    const winRate = document.createElement("td");
+    winRate.innerHTML = (team.win / (team.win + team.lose)).toFixed(2);
+    tr.append(winRate);
+    const kda = document.createElement("td");
+    kda.innerHTML = ((team.kill + team.assist) / team.death).toFixed(2);
+    tr.append(kda);
+    const kill = document.createElement("td");
+    kill.innerHTML = team.kill;
+    tr.append(kill);
+    const death = document.createElement("td");
+    death.innerHTML = team.death;
+    tr.append(death);
+    const assist = document.createElement("td");
+    assist.innerHTML = team.assist;
+    tr.append(assist);
+    table.append(tr);
+  }
+};
+const removeBody = () => {
+  const body = document.getElementById("tbody");
+  body.remove();
+  const table = document.getElementById("table");
+  const newBody = document.createElement("tbody");
+  newBody.setAttribute("id", "tbody");
+  table.append(newBody);
+};
+setTable();
+const sortTableByWin = () => {
+  teams.sort((a, b) => b.win - a.win);
+  removeBody();
+  setTable();
+};
+const sortTableByLose = () => {
+  teams.sort((a, b) => b.lose - a.lose);
+  removeBody();
+  setTable();
+};
+const sortTableByDiff = () => {
+  teams.sort((a, b) => b.winLoseDiff - a.winLoseDiff);
+  removeBody();
+  setTable();
+};
+const sortTableByWinRate = () => {
+  teams.sort((a, b) => {
+    a_winRate = a.win / (a.win + a.lose);
+    b_winRate = b.win / (b.win + b.lose);
+    return b_winRate - a_winRate;
+  });
+  removeBody();
+  setTable();
+};
+const sortTableByKDA = () => {
+  teams.sort((a, b) => {
+    a_kda = (a.kill + a.assist) / a.death;
+    b_kda = (b.kill + b.assist) / b.death;
+    return b_kda - a_kda;
+  });
+  removeBody();
+  setTable();
+};
+const sortTableByKilll = () => {
+  teams.sort((a, b) => b.kill - a.kill);
+  removeBody();
+  setTable();
+};
+const sortTableByDeath = () => {
+  teams.sort((a, b) => b.death - a.death);
+  removeBody();
+  setTable();
+};
+const sortTableByAssist = () => {
+  teams.sort((a, b) => b.assist - a.assist);
+  removeBody();
+  setTable();
+};
 
-  tbody.append(tr);
-}
+// const ageAsc = students.sort((a, b) => b.age - a.age);
+// console.log(ageAsc);

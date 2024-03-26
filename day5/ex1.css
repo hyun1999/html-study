@@ -1,0 +1,8 @@
+.box {
+  height: 100vh;
+}
+.up {
+  position: fixed;
+  top: 90vh;
+  margin-left: 90vw;
+}
