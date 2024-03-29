@@ -1,0 +1,20 @@
+.box {
+  height: 100vh;
+}
+.up {
+  position: fixed;
+  top: 90vh;
+  margin-left: 90vw;
+}
+.show {
+  transition: all 3s;
+  background-color: pink;
+}
+.hide {
+  transition: all 3s;
+  background-color: white;
+}
+.txt_big {
+  transition: all 3s;
+  font-size: 30vw;
+}
