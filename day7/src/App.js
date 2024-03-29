@@ -3,6 +3,7 @@ import "./App.css";
 import { useState } from "react";
 import Boxes from "./components/Boxes";
 import Persons from "./components/Persons";
+import Counter from "./components/Counter";
 // html 태그를 리턴하는 파일을 jsx (강제x)
 // csr (client side rendering) ssr (server side rendering)
 // 초기 속도(사이트 접속했을 때) csr이 압도적으로 느리고 ssr이 압도적으로 빠름
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div className="App">
+      <Counter />
       <Persons />
       <Boxes />
     </div>
