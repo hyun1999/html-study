@@ -8,3 +8,5 @@ src/api --> 통신
 src/routes --> route
 src/config --> config
 src/assets --> img
+
+npm install recoil
