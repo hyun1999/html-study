@@ -1,36 +1,34 @@
+// Signup.jsx
+
 import { useNavigate } from "react-router-dom";
-import { register } from "../api/auth";
+import { login, register } from "../api/auth";
 import Article from "../atom/Article";
 import Button from "../atom/Button";
 import Input from "../atom/Input";
 import Label from "../atom/Label";
-import { useState } from "react";
-// Signup.jsx
-// npm i axios
-// fetch
-const Signup = () => {
+
+//npm i axios, fetch
+const Login = () => {
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();
     const name = document.getElementById("name").value;
     const password = document.getElementById("password").value;
-    try {
-      const res = await register({ name, password });
-      if (res.status === 201) navigate("/login");
-    } catch (error) {
-      setMessage(error.response.data);
+    const res = await login({ name, password });
+    if (res.status === 200) {
+      navigate("/board");
+      localStorage.setItem("id", res.data.id);
     }
+    console.log(res);
   };
   return (
     <div className="container">
       <Article>
-        <p>{message}</p>
         <form onSubmit={onSubmit}>
           <Label htmlFor="name">name</Label>
           <Input id="name" required />
           <Label htmlFor="password">password</Label>
-          <Input id="password" type="password" required />
+          <Input id="password" required />
           <hr className="m-4" />
           <Button>submit</Button>
         </form>
@@ -38,4 +36,5 @@ const Signup = () => {
     </div>
   );
 };
-export default Signup;
+
+export default Login;
